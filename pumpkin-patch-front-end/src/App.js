@@ -7,19 +7,17 @@ import {createTheme, TableContainer, ThemeProvider} from "@mui/material";
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import CurrentLocationButton from "./Components/PrimaryContent/CurrentLocationButton";
+import SinglePumpkinMap from "./Components/PrimaryContent/SinglePumpkinMap";
 
-const darkTheme = createTheme({
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: '#1976d2',
-        },
-    },
-});
+
 
 function App() {
     const [listPumpkins, setListOfAllPumpkins] = useState([])
     const [singlePumpkin, setSinglePumpkin] = useState()
+
+    const [latPosition, setLatPosition] = useState();
+    const [longPosition, setLongPosition] = useState()
 
     const axiosCallForAllPumpkins = ()=>{
         axios.get(`http://localhost:3001/pumpkin`)
@@ -52,19 +50,31 @@ function App() {
     })
     return (
         <>
-            <ThemeProvider theme = {(selectedTheme === false) ? darkTheme : lightTheme}>
+            {/*<SinglePumpkinMap/>*/}
+            <ThemeProvider theme = {(selectedTheme === true) ? darkTheme : lightTheme}>
                 <TopNavigation setSelectedTheme = {setSelectedTheme} selectedTheme ={selectedTheme}/>
                     <Container >
                         <Grid2 container spacing = {12}>
                             <Grid2 xs={2}>
-
+                                <Box display = 'flex'
+                                    alignItems = 'center'
+                                    justifyContent = 'center'>
+                                    <CurrentLocationButton  axiosCallForAllPumpkins ={axiosCallForAllPumpkins}
+                                                            latPosition = {latPosition}
+                                                            setLatPosition = {setLatPosition}
+                                                            longPosition = {longPosition}
+                                                            setLongPosition = {setLongPosition}
+                                    />
+                                </Box>
                             </Grid2>
                             <Grid2 xs={8}>
                                 <Box
                                     display = "flex"
                                     alignItems = "left"
                                     justifyContent = "center">
-                                    <ListOfAllPumpkins listPumpkins = {listPumpkins}/>
+                                    <ListOfAllPumpkins listPumpkins = {listPumpkins} longPosition = {longPosition}
+                                                       latPosition = {latPosition}
+                                    />
                                 </Box>
 
                             </Grid2>
@@ -76,8 +86,6 @@ function App() {
             </ThemeProvider>
         </>
     )
-
-
 }
 
 export default App;

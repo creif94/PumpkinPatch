@@ -1,8 +1,12 @@
-import {Collapse, TableCell, TableRow} from "@mui/material";
+import {Collapse, Table, TableCell, TableHead, TableRow} from "@mui/material";
 import {useState} from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import IconButton from "@mui/material/IconButton";
+import SinglePumpkinMap from "./SinglePumpkinMap";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 
 const SinglePumpkin = (props) => {
@@ -11,6 +15,7 @@ const SinglePumpkin = (props) => {
 
     return (
         <>
+
             <TableRow>
                 <TableCell>
                     <IconButton
@@ -26,12 +31,20 @@ const SinglePumpkin = (props) => {
                 <TableCell align ='center'> {props.pumpkin.date}</TableCell>
             </TableRow>
             <TableRow>
-                <Collapse in ={open} timeout ="auto" unmountOnExit>
-                    <TableCell>????</TableCell>
-                </Collapse>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in ={open} timeout ="auto" unmountOnExit>
+                        <Typography variant="h6" gutterBottom component="div">
+                           Map
+                        </Typography>
+                        <SinglePumpkinMap latPosition = {props.pumpkin.latitude}
+                                          longPosition = {props.pumpkin.longitude} />
+
+                    </Collapse>
+                </TableCell>
             </TableRow>
         </>
     )
 }
 
 export default SinglePumpkin;
+

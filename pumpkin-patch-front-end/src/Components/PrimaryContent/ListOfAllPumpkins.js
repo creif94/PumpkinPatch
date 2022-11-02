@@ -1,11 +1,13 @@
 import SinglePumpkin from './SinglePumpkin'
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
 
 const ListOfAllPumpkins =(props)=>{
 
     const PumpkinMapping = props.listPumpkins.map((pumpkin)=>{
        return (
-           <SinglePumpkin key={pumpkin.id} pumpkin={pumpkin} />
+           <SinglePumpkin key={pumpkin.id} pumpkin={pumpkin} longPosition = {props.longPosition}
+                          latPosition = {props.latPosition} />
        )
     })
 

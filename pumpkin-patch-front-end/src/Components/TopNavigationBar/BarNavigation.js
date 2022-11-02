@@ -19,7 +19,10 @@ import {Switch} from "@mui/material";
 const title = 'The Pumpkin Chase'
 const pages = ['Add', 'Map'];
 
+
 function BarNavigation(props) {
+
+
     return (
         <>
             <AppBar position="static">
@@ -39,6 +42,8 @@ function BarNavigation(props) {
                 </Container>
                     <Switch
                         checked={props.selectedTheme}
+                        // onChange={(e) => handleSubmit(e)}
+
                         onChange={()=>{props.setSelectedTheme(!props.selectedTheme)}}
                     />
                 </Toolbar>
