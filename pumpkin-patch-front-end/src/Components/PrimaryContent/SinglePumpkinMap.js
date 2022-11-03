@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {GoogleMap, useLoadScript, Marker} from "@react-google-maps/api"
+import {GoogleMap, useLoadScript, MarkerF} from "@react-google-maps/api"
 import './SinglePumpkinMap.css'
 
 
@@ -16,7 +16,8 @@ const SinglePumpkinMap =(props) =>{
         zoom={10}
         center={center}
         mapContainerClassName = "map-container">
-            <Marker key="marker_1" position={{lat: props.latPosition, lng:props.longPosition}} />
+            <MarkerF key="marker_1"
+                    position={{lat: props.latPosition, lng:props.longPosition}} />
         </GoogleMap>
         )
     }

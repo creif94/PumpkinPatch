@@ -7,6 +7,8 @@ import SinglePumpkinMap from "./SinglePumpkinMap";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import DeletePumpkin from "./DeletePumpkin";
+import Toolbar from "@mui/material/Toolbar";
 
 
 const SinglePumpkin = (props) => {
@@ -33,12 +35,15 @@ const SinglePumpkin = (props) => {
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in ={open} timeout ="auto" unmountOnExit>
+                       <Toolbar>
                         <Typography variant="h6" gutterBottom component="div">
                            Map
                         </Typography>
+                        <DeletePumpkin id = {props.pumpkin.id}
+                                       axiosCallForAllPumpkins = {props.axiosCallForAllPumpkins}/></Toolbar>
                         <SinglePumpkinMap latPosition = {props.pumpkin.latitude}
-                                          longPosition = {props.pumpkin.longitude} />
-
+                                          longPosition = {props.pumpkin.longitude}
+                                          />
                     </Collapse>
                 </TableCell>
             </TableRow>

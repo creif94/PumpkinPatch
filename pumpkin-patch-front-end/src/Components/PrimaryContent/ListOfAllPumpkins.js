@@ -7,10 +7,9 @@ const ListOfAllPumpkins =(props)=>{
     const PumpkinMapping = props.listPumpkins.map((pumpkin)=>{
        return (
            <SinglePumpkin key={pumpkin.id} pumpkin={pumpkin} longPosition = {props.longPosition}
-                          latPosition = {props.latPosition} />
+                          latPosition = {props.latPosition} axiosCallForAllPumpkins ={props.axiosCallForAllPumpkins} />
        )
     })
-
     return(
         <>
             <TableContainer sx={{mr:9}}>

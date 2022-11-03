@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import CurrentLocationButton from "./Components/PrimaryContent/CurrentLocationButton";
 import SinglePumpkinMap from "./Components/PrimaryContent/SinglePumpkinMap";
+import GlobalMap from "./Components/GlobalMap/GlobalMap";
 
 
 
@@ -38,33 +39,27 @@ function App() {
         palette: {
             mode: 'dark',
             primary:{
-                main: '#414141',
+                main: '#000000',
             },
-            secondary:{
-                main: '#414141',
-            }
-
-
-
         }
     })
+
     return (
         <>
-            {/*<SinglePumpkinMap/>*/}
             <ThemeProvider theme = {(selectedTheme === true) ? darkTheme : lightTheme}>
-                <TopNavigation setSelectedTheme = {setSelectedTheme} selectedTheme ={selectedTheme}/>
+                <TopNavigation setSelectedTheme = {setSelectedTheme} selectedTheme ={selectedTheme}
+                               axiosCallForAllPumpkins ={axiosCallForAllPumpkins}
+                               latPosition = {latPosition}
+                               setLatPosition = {setLatPosition}
+                               longPosition = {longPosition}
+                               setLongPosition = {setLongPosition}/>
+                {/*<GlobalMap />*/}
                     <Container >
                         <Grid2 container spacing = {12}>
                             <Grid2 xs={2}>
                                 <Box display = 'flex'
                                     alignItems = 'center'
                                     justifyContent = 'center'>
-                                    <CurrentLocationButton  axiosCallForAllPumpkins ={axiosCallForAllPumpkins}
-                                                            latPosition = {latPosition}
-                                                            setLatPosition = {setLatPosition}
-                                                            longPosition = {longPosition}
-                                                            setLongPosition = {setLongPosition}
-                                    />
                                 </Box>
                             </Grid2>
                             <Grid2 xs={8}>
@@ -73,13 +68,12 @@ function App() {
                                     alignItems = "left"
                                     justifyContent = "center">
                                     <ListOfAllPumpkins listPumpkins = {listPumpkins} longPosition = {longPosition}
-                                                       latPosition = {latPosition}
+                                                       latPosition = {latPosition} axiosCallForAllPumpkins = {axiosCallForAllPumpkins}
                                     />
                                 </Box>
 
                             </Grid2>
                             <Grid2 xs={2}>
-
                             </Grid2>
                         </Grid2>
                     </Container>
