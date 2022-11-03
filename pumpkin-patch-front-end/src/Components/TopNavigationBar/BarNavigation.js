@@ -63,10 +63,10 @@ function BarNavigation(props) {
                             <Box align ='center'><Button sx={{color:'white'}} variant={"text"} onClick={()=>{getLocation()}}>Add Pumpkin</Button></Box>
                         </Grid2>
                         <Grid2 xs={4}>
-                            <Box align ='center'><Button sx={{color:'white'}} variant={"text"}>The Pumpkin Chase</Button></Box>
+                            <Box align ='center'><Button sx={{color:'white'}} variant={"text"} onClick = {()=> props.setGlobalView(false)}>The Pumpkin Chase</Button></Box>
                         </Grid2>
                         <Grid2 xs={4}>
-                            <Box align ='center'><Button sx={{color:'white'}} variant={"text"}>Global Map</Button></Box>
+                            <Box align ='center'><Button sx={{color:'white'}} variant={"text"} onClick = {()=> props.setGlobalView(true)}>Global Map</Button></Box>
                         </Grid2>
                     </Grid2>
                 </Container>

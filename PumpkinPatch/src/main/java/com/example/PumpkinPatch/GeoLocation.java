@@ -1,12 +1,11 @@
 package com.example.PumpkinPatch;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Entity
@@ -19,6 +18,9 @@ public class GeoLocation {
     private double longitude;
     private String date;
 
+    @OneToMany
+//    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private List<Notes> notes;
 
     public GeoLocation(){};
 
@@ -44,6 +46,14 @@ public class GeoLocation {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Notes> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Notes note) {
+        this.notes.add(note);
     }
 
     public String getDate() {

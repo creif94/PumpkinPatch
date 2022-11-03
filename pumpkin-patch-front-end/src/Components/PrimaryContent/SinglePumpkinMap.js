@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {GoogleMap, useLoadScript, MarkerF} from "@react-google-maps/api"
 import './SinglePumpkinMap.css'
+import Pumpkin from './Icons/icons8-cute-pumpkin.svg'
 
 
 
@@ -17,6 +18,7 @@ const SinglePumpkinMap =(props) =>{
         center={center}
         mapContainerClassName = "map-container">
             <MarkerF key="marker_1"
+                     icon = {Pumpkin}
                     position={{lat: props.latPosition, lng:props.longPosition}} />
         </GoogleMap>
         )

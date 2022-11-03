@@ -15,8 +15,10 @@ import java.util.Optional;
 public class GeoLocationController {
 
     Repo repo;
-    public GeoLocationController(Repo repo) {
+    NotesRepo noteRepo;
+    public GeoLocationController(Repo repo, NotesRepo notesRepo) {
         this.repo = repo;
+        this.noteRepo = notesRepo;
     }
 
     //PostMappings:
@@ -26,6 +28,27 @@ public class GeoLocationController {
         this.repo.save(location);
         return location;
     }
+    @PostMapping("/batch")
+    public List<GeoLocation> savePumpkinLocations(@RequestBody List<GeoLocation> locations){
+        for(GeoLocation newLocation : locations){
+            newLocation.setDate();
+            this.repo.save(newLocation);
+        }
+        return locations;
+    }
+
+    @PostMapping("/{id}/notes")
+    public GeoLocation addNoteToGeoLocation(@PathVariable Long id, @RequestBody Notes note){
+        note.setDate();
+        System.out.println(note);
+        this.noteRepo.save(note);
+        GeoLocation specificLocation = this.repo.findById(id).get();
+        this.noteRepo.save(note);
+        specificLocation.setNotes(note);
+        this.repo.save(specificLocation);
+        return specificLocation;
+    }
+
     //GetMappings:
     @GetMapping("")
     public List<GeoLocation> getPumpkinLocations(){
@@ -40,6 +63,7 @@ public class GeoLocationController {
         this.repo.deleteById(id);
         return "deleted";
     }
+
     @PatchMapping("/{id}")
     public GeoLocation patchPumpkinLocation(@PathVariable Long id, @RequestBody Map<String, Double> location){
         GeoLocation oldPumpkin = this.repo.findById(id).get();
@@ -54,7 +78,4 @@ public class GeoLocationController {
         this.repo.save(oldPumpkin);
         return oldPumpkin;
     }
-
-
-
 }
