@@ -8,7 +8,10 @@ const ListOfAllPumpkins =(props)=>{
        return (
            <SinglePumpkin key={pumpkin.id} pumpkin={pumpkin} longPosition = {props.longPosition}
                           latPosition = {props.latPosition} axiosCallForAllPumpkins ={props.axiosCallForAllPumpkins}
-                            setToggleNotes = {props.setToggleNotes}/>
+                          setToggleNotes = {props.setToggleNotes}
+                          toggleNotes = {props.toggleNotes}
+                          setSinglePumpkin = {props.setSinglePumpkin}
+                          setAllNotes = {props.setAllNotes}/>
        )
     })
     return(

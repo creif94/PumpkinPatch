@@ -20,6 +20,7 @@ function App() {
     const [globalView, setGlobalView] = useState(false)
     const [listPumpkins, setListOfAllPumpkins] = useState([])
     const [toggleNotes, setToggleNotes] = useState(false)
+    const [singlePumpkin, setSinglePumpkin] = useState({})
 
     const [latPosition, setLatPosition] = useState();
     const [longPosition, setLongPosition] = useState()
@@ -36,7 +37,10 @@ function App() {
     const [selectedTheme, setSelectedTheme] = useState(false)
     const lightTheme = createTheme({
         palette: {
-            mode: 'light'
+            mode: 'light',
+            primary:{
+                main: '#000000',
+            },
         }
     })
     const darkTheme = createTheme({
@@ -51,8 +55,21 @@ function App() {
     const toggleNotesPanel = () =>{
         if (!toggleNotes){
             return (<></>)
-        } else { return(<><Box align ='center'><PumpkinNote /></Box></>)}
+        } else { return(<><Box align ='center'><PumpkinNote singlePumpkin = {singlePumpkin}
+                                                            axiosCallForAllPumpkins = {axiosCallForAllPumpkins}
+                                                            allNotes={allNotes} setAllNotes={setAllNotes}
+                                                            axiosCallForAllNotes={axiosCallForAllNotes}
+                                                            toggleNotes ={toggleNotes} setToggleNotes ={setToggleNotes}/></Box></>)}
     }
+    const [allNotes, setAllNotes] = useState([])
+    const axiosCallForAllNotes = ()=>{
+        axios.get(`http://localhost:3001/pumpkin/${singlePumpkin.id}/notes`)
+            .then((response)=>{setAllNotes(response.data)})
+            .then(()=>{console.log("Pumpkin Notes pull was successfully")})
+    }
+    useEffect(()=>{
+       axiosCallForAllNotes()
+    },[singlePumpkin])
 
 
     const switchView = () =>{
@@ -80,7 +97,9 @@ function App() {
                                     sx={{mt:5}}>
                                     <ListOfAllPumpkins listPumpkins = {listPumpkins} longPosition = {longPosition}
                                                        latPosition = {latPosition} axiosCallForAllPumpkins = {axiosCallForAllPumpkins}
-                                                       setToggleNotes = {setToggleNotes}
+                                                       setToggleNotes = {setToggleNotes} toggleNotes = {toggleNotes}
+                                                       setSinglePumpkin = {setSinglePumpkin}
+                                                       setAllNotes = {setAllNotes}
                                     />
                                 </Box>
                             </Grid2>

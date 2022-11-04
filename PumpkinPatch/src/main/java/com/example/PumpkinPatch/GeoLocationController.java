@@ -48,6 +48,15 @@ public class GeoLocationController {
         this.repo.save(specificLocation);
         return specificLocation;
     }
+    @GetMapping("/{id}/notes")
+    public List<Notes> getnotes(@PathVariable Long id){
+        GeoLocation specificLocation = this.repo.findById(id).get();
+        return specificLocation.getNotes();
+    }
+    @DeleteMapping("/{id}/notes/{id}")
+    public void deleteNotes(@PathVariable Long id, @PathVariable("id") Long idDelete){
+        this.noteRepo.deleteById(idDelete);
+    }
 
     //GetMappings:
     @GetMapping("")

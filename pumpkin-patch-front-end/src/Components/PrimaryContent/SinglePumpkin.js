@@ -9,10 +9,17 @@ import DeletePumpkin from "./DeletePumpkin";
 import Toolbar from "@mui/material/Toolbar";
 import Pumpkin1 from '../GlobalMap/Icons/icons8-cute-pumpkin.svg'
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 
 const SinglePumpkin = (props) => {
     const [open, setOpen] = useState(false)
+
+    const handleOpen = () =>{
+        props.setToggleNotes(!props.toggleNotes)
+        props.setSinglePumpkin(props.pumpkin)
+        // props.setAllNotes(props.pumpkin.notes)
+    }
     return (
         <>
             <TableRow>
@@ -38,7 +45,7 @@ const SinglePumpkin = (props) => {
                         </Typography>
                         <DeletePumpkin id = {props.pumpkin.id}
                                        axiosCallForAllPumpkins = {props.axiosCallForAllPumpkins}/>
-                       <Button sx={{ml:2}} onClick={()=>props.setToggleNotes(!)}>Notes:</Button>
+                       <Button sx={{ml:2 , color:'black'}} onClick={()=>handleOpen()}>Notes:</Button>
                        </Toolbar>
                         <SinglePumpkinMap latPosition = {props.pumpkin.latitude}
                                           longPosition = {props.pumpkin.longitude}
