@@ -19,6 +19,7 @@ const SinglePumpkinMap =(props) =>{
         mapContainerClassName = "map-container">
             <MarkerF key="marker_1"
                      icon = {Pumpkin}
+                     onMouseOver={()=>{ window.alert("boo!!!!")}}
                     position={{lat: props.latPosition, lng:props.longPosition}} />
         </GoogleMap>
         )

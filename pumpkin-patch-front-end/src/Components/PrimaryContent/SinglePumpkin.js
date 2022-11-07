@@ -45,7 +45,7 @@ const SinglePumpkin = (props) => {
                         </Typography>
                         <DeletePumpkin id = {props.pumpkin.id}
                                        axiosCallForAllPumpkins = {props.axiosCallForAllPumpkins}/>
-                       <Button sx={{ml:2 , color:'black'}} onClick={()=>handleOpen()}>Notes:</Button>
+                       <Button sx={{ml:2 , color:'#fb8654'}} onClick={()=>handleOpen()}>Notes:</Button>
                        </Toolbar>
                         <SinglePumpkinMap latPosition = {props.pumpkin.latitude}
                                           longPosition = {props.pumpkin.longitude}

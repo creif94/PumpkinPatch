@@ -53,8 +53,12 @@ public class GeoLocationController {
         GeoLocation specificLocation = this.repo.findById(id).get();
         return specificLocation.getNotes();
     }
-    @DeleteMapping("/{id}/notes/{id}")
-    public void deleteNotes(@PathVariable Long id, @PathVariable("id") Long idDelete){
+    @DeleteMapping("/{id}/notes/{idDelete}")
+    public void deleteNotes(@PathVariable Long id, @PathVariable Long idDelete){
+        GeoLocation specificLocation = this.repo.findById(id).get();
+        Notes note = this.noteRepo.findById(idDelete).get();
+        specificLocation.getNotes().remove(note);
+        this.repo.save(specificLocation);
         this.noteRepo.deleteById(idDelete);
     }
 

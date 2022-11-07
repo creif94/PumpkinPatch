@@ -13,7 +13,7 @@ const DeletePumpkin =(props) =>{
 
     return(
         <>
-        <Button sx={{ml:3, color:'black'}} onClick={()=>axiosDeletePumpkin()}> Delete </Button>
+        <Button sx={{ml:3, color:'#fb8654'}} onClick={()=>axiosDeletePumpkin()}> Delete </Button>
         </>
     )
 }

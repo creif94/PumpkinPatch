@@ -26,7 +26,7 @@ const GlobalMap =(props) =>{
                 mapContainerStyle = {containerStyle}
                 >
                 {props.listPumpkins.map((pumpkin)=>{
-                    return <MarkerF key={pumpkin.id} position={{lat: pumpkin.latitude, lng: pumpkin.longitude}} icon={Pumpkin}/>
+                    return <MarkerF key={pumpkin.id} onMouseOver={()=>{ window.alert("boo!!!!")}} position={{lat: pumpkin.latitude, lng: pumpkin.longitude}} icon={Pumpkin}/>
                 })}
                 {/*<MarkerF key="marker_1"*/}
                 {/*         position={{lat: 30.1924352, lng:-97.7666048}} />*/}

@@ -18,10 +18,18 @@ import PumpkinNote from "./Components/PrimaryContent/PumpkinNote"
 
 function App() {
     const [globalView, setGlobalView] = useState(false)
+
+
+
+
+
+
+
+
+    
     const [listPumpkins, setListOfAllPumpkins] = useState([])
     const [toggleNotes, setToggleNotes] = useState(false)
     const [singlePumpkin, setSinglePumpkin] = useState({})
-
     const [latPosition, setLatPosition] = useState();
     const [longPosition, setLongPosition] = useState()
 

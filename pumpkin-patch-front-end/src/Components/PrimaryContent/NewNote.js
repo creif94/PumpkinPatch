@@ -9,10 +9,15 @@ const NewNote = (props) => {
 
     return (
         <>
-            <Card sx={{ minWidth: 750 }}>
+            <Card >
                 <CardContent>
                     <Box align={'center'}>
-                       <form onSubmit={(e)=>{props.axiosCallPost(e)}}>
+                       <form onSubmit={(e)=>{
+                           props.axiosCallPost(e);
+                           props.setToggleAdd(!props.toggleAdd)
+                           props.setContent('')
+                            e.preventDefault();
+                       }}>
                             <TextField
                                 id="standard-multiline-flexible"
                                 label="Multiline"
@@ -23,8 +28,8 @@ const NewNote = (props) => {
                                 variant="standard"
                             />
                            <ButtonGroup variant="text" color='primary' aria-label="outlined button group" sx={{mt:3}}>
-                               <Button sx={{color:'black'}} type="submit">Submit</Button>
-                               <Button sx={{color:'black'}} onClick={()=>{props.setContent()}}>Clear</Button>
+                               <Button sx={{color:'#fb8654'}} type="submit">Submit</Button>
+                               <Button sx={{color:'#fb8654'}} onClick={()=>{props.setContent()}}>Clear</Button>
                            </ButtonGroup>
                        </form>
                     </Box>
